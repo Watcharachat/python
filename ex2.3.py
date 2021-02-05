@@ -1,0 +1,17 @@
+#โปรแกรมหยิบสินค้าใส่ตระกร้า
+f = input("หยิบสินค้าครั้งที่ 1 :")
+g = input("หยิบสินค้าครั้งที่ 2 :")
+h = input("หยิบสินค้าครั้งที่ 3 :")
+i = input("หยิบสินค้าครั้งที่ 4 :")
+j = input("หยิบสินค้าครั้งที่ 5 :")
+cart = []
+cart.append(f)
+cart.append(g)
+cart.append(h)
+cart.append(i)
+cart.append(j)
+print('1.',cart[0])
+print('2.',cart[1])
+print('3.',cart[2])
+print('4.',cart[3])
+print('5.',cart[4])
