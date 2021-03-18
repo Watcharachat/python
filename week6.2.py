@@ -1,4 +1,3 @@
-
 import sqlite3
 
 conn = sqlite3.connect(r'D:\Watcharachat_Python\watcharachat.db')
@@ -8,26 +7,27 @@ c = conn.cursor()
 c.execute("""CREATE TABLE students (id integer PRIMARY KEY AUTOINCREMENT,
     fname varchar(30) NOT NULL,
     lname varchar(30) NOT NULL,
-    email varchar(100) NOT NULL,
+    age varchar(5) NOT NULL,
     sex varchar(10) NOT NULL,
-    age varchar(10) NOT NULL,
-    year varchar(5) NOT NULL)""")
-#conn.commit()
-#conn.close()
+    email varchar(10) NOT NULL,
+    tel varchar(10) NOT NULL
+    Runningtype(30))""")
+conn.commit()
+conn.close()
 '''
 
 def menu():
     global choice
-    print('-'*7,'ระบบทะเบียนนักเรียน','-'*7)
-    print('='*30,'\nเพิ่มข้อมูลนักเรียน กด [a]\nแสดงข้อมูลนักเรียน [s]\nแก้ไขข้อมูลนักเรียน [e]\nลบข้อมูลนักเรียน [d]\nออกจากระบบ [x]')
+    print('-'*7,'ระบบลงทะเบียนผู้สมัครวิ่งมาราธอน','-'*7)
+    print('='*30,'\nเพิ่มข้อมูลผู้สมัคร กด [a]\nแสดงข้อมูลผู้สมัคร [s]\nแก้ไขข้อมูลผู้สมัคร [e]\nลบข้อมูลผู้สมัคร [d]\nออกจากระบบ [x]')
     choice = input('\nกรุณาเลือกทำรายการ :')
 
-def add(fname,lname,email,sex,age,year):
+def add(fname,lname,id,age,sex,email,tel,Runningtype):
     try :
         conn = sqlite3.connect(r'D:\Watcharachat_Python\watcharachat.db')
         c = conn.cursor()
-        sql = '''INSERT INTO students (fname,lname,email,sex,age,year) VALUES (?,?,?,?,?,?)'''
-        data = (fname,lname,email,sex,age,year)
+        sql = '''INSERT INTO students (fname,lname,id,age,sex,email,tel,Runningtype) VALUES (?,?,?,?,?,?,?,?)'''
+        data = (fname,lname,id,age,sex,email,tel,Runningtype)
         c.execute(sql,data)
         conn.commit()
         c.close()
@@ -45,9 +45,9 @@ def show():
 
     c.execute('''SELECT * FROM students''')
     result = c.fetchall()
-    print('{0:<12}{1:<15}{2:<15}{3:<27}{4:<6}{5:<6}{6}'.format('ลำดับที่',' ชื่อ','สกุล','อีเมล','เพศ','อายุ','ชั้นปี'))
+    print('{0:<12}{1:<15}{2:<15}{3:<27}{4:<6}{5:<6}{6}'.format('ลำดับที่',' ชื่อ','สกุล','อายุ','เพศ','อีเมล','เบอร์โทรศัพท์','ประเภทการวิ่ง'))
     for x in result :
-        print('{0:<8}{1:<15}{2:<15}{3:<27}{4:<6}{5:<6}{6}'.format(x[0],x[1],x[2],x[3],x[4],x[5],x[6]))
+        print('{0:<8}{1:<15}{2:<15}{3:<27}{4:<6}{5:<6}{6}'.format(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8]))
     print('ได้ทำรายการเสร็จสิ้น\n')
     conn.commit()
     conn.close()
